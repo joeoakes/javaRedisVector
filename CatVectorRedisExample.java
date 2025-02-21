@@ -15,6 +15,13 @@ support float arrays.
 Sample Data: Three cats are added with 4D vectors, and a query vector is used to find
 similar cats.
 
+Each cat has a name and a 4-dimensional vector representing some features
+(e.g., fur length, whisker length, eye brightness, purr intensity—though these are
+arbitrary for this example).
+
+The code uses Euclidean distance to measure similarity between the query vector
+and each cat’s vector.
+
  */
 
 public class CatVectorRedisExample {
@@ -35,6 +42,8 @@ public class CatVectorRedisExample {
             addCatData(jedis, "cat:1", "Whiskers", new float[]{0.1f, 0.8f, 0.3f, 0.6f});
             addCatData(jedis, "cat:2", "Mittens", new float[]{0.2f, 0.7f, 0.4f, 0.5f});
             addCatData(jedis, "cat:3", "Shadow", new float[]{0.9f, 0.2f, 0.1f, 0.3f});
+            addCatData(jedis, "cat:4", "Alpha", new float[]{0.5f, 0.2f, 0.3f, 0.3f});
+            addCatData(jedis, "cat:5", "Yoda", new float[]{0.8f, 0.1f, 0.1f, 0.4f});
 
             // Query vector for similarity search
             float[] queryVector = new float[]{0.15f, 0.75f, 0.35f, 0.55f};
