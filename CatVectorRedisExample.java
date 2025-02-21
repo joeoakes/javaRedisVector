@@ -39,6 +39,7 @@ public class CatVectorRedisExample {
             jedis.flushDB();
 
             // Add sample cat data with vectors
+            //fur length, whisker length, eye brightness, purr intensity
             addCatData(jedis, "cat:1", "Whiskers", new float[]{0.1f, 0.8f, 0.3f, 0.6f});
             addCatData(jedis, "cat:2", "Mittens", new float[]{0.2f, 0.7f, 0.4f, 0.5f});
             addCatData(jedis, "cat:3", "Shadow", new float[]{0.9f, 0.2f, 0.1f, 0.3f});
@@ -47,6 +48,7 @@ public class CatVectorRedisExample {
 
             // Query vector for similarity search
             float[] queryVector = new float[]{0.15f, 0.75f, 0.35f, 0.55f};
+            System.out.println("Query Vector: " + vectorToString(queryVector));
             findSimilarCats(jedis, queryVector);
         }
     }
