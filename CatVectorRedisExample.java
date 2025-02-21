@@ -22,6 +22,11 @@ arbitrary for this example).
 The code uses Euclidean distance to measure similarity between the query vector
 and each cat’s vector.
 
+smaller distances indicate greater similarity
+
+Distance 0.1000 Explorer is the closest match to the query vector.
+Distance 0.7000 Alpha ranks second in similarity.
+Distance 0.9644 Least Similar: Yoda is the farthest from the query vector.
  */
 
 public class CatVectorRedisExample {
@@ -40,11 +45,9 @@ public class CatVectorRedisExample {
 
             // Add sample cat data with vectors
             //fur length, whisker length, eye brightness, purr intensity
-            addCatData(jedis, "cat:1", "Whiskers", new float[]{0.1f, 0.8f, 0.3f, 0.6f});
-            addCatData(jedis, "cat:2", "Mittens", new float[]{0.2f, 0.7f, 0.4f, 0.5f});
-            addCatData(jedis, "cat:3", "Shadow", new float[]{0.9f, 0.2f, 0.1f, 0.3f});
-            addCatData(jedis, "cat:4", "Alpha", new float[]{0.5f, 0.2f, 0.3f, 0.3f});
-            addCatData(jedis, "cat:5", "Yoda", new float[]{0.8f, 0.1f, 0.1f, 0.4f});
+            addCatData(jedis, "cat:1", "Explorer", new float[]{0.1f, 0.8f, 0.3f, 0.6f});
+            addCatData(jedis, "cat:2", "Alpha", new float[]{0.5f, 0.2f, 0.3f, 0.3f});
+            addCatData(jedis, "cat:3", "Yoda", new float[]{0.8f, 0.1f, 0.1f, 0.4f});
 
             // Query vector for similarity search
             float[] queryVector = new float[]{0.15f, 0.75f, 0.35f, 0.55f};
@@ -115,5 +118,6 @@ public class CatVectorRedisExample {
                 System.out.printf("Cat: %s, Distance: %.4f%n", name, distance);
             }
         } while (!"0".equals(cursor));
+        System.out.printf("smaller distances indicate greater similarity");
     }
 }
