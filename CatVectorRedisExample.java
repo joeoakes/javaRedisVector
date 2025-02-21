@@ -5,6 +5,17 @@ import redis.clients.jedis.resps.ScanResult;
 
 import java.util.HashMap;
 import java.util.Map;
+/*
+Data Model: Each cat is stored as a Redis Hash with a name and a vector field.
+The vector represents features (e.g., fur length, whisker length, etc.) as a float array.
+
+Vector Storage: Vectors are stored as comma-separated strings since Redis doesn't natively
+support float arrays.
+
+Sample Data: Three cats are added with 4D vectors, and a query vector is used to find
+similar cats.
+
+ */
 
 public class CatVectorRedisExample {
     private static final String REDIS_HOST = "localhost";
